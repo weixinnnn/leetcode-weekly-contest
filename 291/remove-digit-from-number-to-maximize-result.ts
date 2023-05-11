@@ -24,15 +24,14 @@ Constraints:
 */
 
 const removeDigit = (number: string, digit: string): string => {
-  let result = BigInt(0);
+  let index = 0;
 
   for (let i = 0; i < number.length; i++) {
-    if (number[i] !== digit) continue;
-    const current = BigInt(number.substring(0, i) + number.substring(i + 1));
-    if (current > result) {
-      result = current;
+    if (number[i] === digit) {
+      index = i;
+      if (number.charAt(i + 1) > digit) break;
     }
   }
 
-  return result.toString();
+  return number.slice(0, index) + number.slice(index + 1);
 };
